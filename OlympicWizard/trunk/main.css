@@ -1,0 +1,33 @@
+/* CSS file */
+Application
+{
+    backgroundColor: white;
+    backgroundImage: "assets/1.jpg";
+}
+
+.navigateButton
+{
+	color: white;
+	textRollOverColor: #d4d4d6;
+	/*rollOverColor: #823024;*/
+	fontSize: 14;
+}
+
+.navigateButtonSelected
+{
+	color: #949496;
+	textRollOverColor: #d4d4d6;
+	/*rollOverColor: #823024;*/
+	fontSize: 14;
+}
+
+.searchInput
+{
+	color: white;
+	backgroundAlpha: 0.0;
+	fontSize: 12;
+}
+
+.searchGo
+{
+}
