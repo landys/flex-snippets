@@ -1,0 +1,448 @@
+<?xml version="1.0"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="*"
+initialize="initApp()" backgroundColor="0xFFFFFF" layout="vertical" 
+paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
+	<!-- /chart.swf?c1=杭州&c2=北京&goDate=2008-10-24&backDate=2008-10-29&version=20081020 -->
+	<mx:Script><![CDATA[
+		import mx.managers.CursorManager;
+		import chart.DataModel;
+		import mx.utils.ArrayUtil;
+		import flash.net.navigateToURL;
+		import mx.charts.CategoryAxis;
+		import mx.core.IFlexDisplayObject;
+		import mx.charts.events.ChartItemEvent;
+		import mx.charts.series.items.LineSeriesItem;
+		import mx.charts.series.ColumnSeries;
+		import mx.effects.Fade;
+		import mx.effects.Move;
+		import mx.effects.Parallel;
+		import mx.charts.HitData;
+		import mx.collections.ArrayCollection;
+		import mx.controls.Alert;
+		import mx.rpc.events.ResultEvent;
+		import mx.rpc.events.FaultEvent;
+		import mx.rpc.http.HTTPService;
+		import chart.DataModel;
+		import mx.formatters.DateFormatter;
+		import mx.utils.StringUtil;
+		
+		
+		// c1 出发城市， c2 到达城市
+		[Bindable]
+		private var c1:String = "杭州";// "西安";//"杭州";
+		[Bindable]
+		private var c2:String = "北京";//"三亚";//"北京";
+		[Bindable]
+		private var begMonth:String;
+		[Bindable]
+		private var endMonth:String;
+		[Bindable]
+		private var title:String = "";
+		[Bindable]
+		private var goLabel:String = "";
+		[Bindable]
+		private var backLabel:String = "";
+		[Bindable]
+		private var horiTitle:String = "";
+		[Bindable]
+		private var reviewEnabled:Boolean = true;
+		[Bindable]
+		private var vetiTitle:String = "价格";
+		[Bindable]
+		private var allVisible:Boolean = false;
+		[Bindable]
+		private var itemData:ArrayCollection;
+		[Bindable]
+		private var summaryData:Object;
+		[Bindable]
+		private var highest:int;
+		[Bindable]
+		private var interval:int;
+		
+		private var goDate:String = "1970-01-01";
+		private var backDate:String = "1970-01-01";
+
+		//public static var allData:ArrayCollection;
+		[Bindable]
+		private var vertLineGo:ArrayCollection;
+		
+		[Bindable]
+		private var vertLineBack:ArrayCollection;
+		
+		[Bindable]
+		private var cities:ArrayCollection = new ArrayCollection(
+			[ {label:"上海", data:"上海"},
+			{label:"北京", data:"北京"},
+			{label:"广州", data:"广州"},
+			{label:"深圳", data:"深圳"},
+			{label:"成都", data:"成都"},
+			{label:"昆明", data:"昆明"},
+			{label:"重庆", data:"重庆"},
+			{label:"长沙", data:"长沙"},
+			{label:"武汉", data:"武汉"},
+			{label:"南京", data:"南京"},
+			{label:"天津", data:"天津"},
+			{label:"大连", data:"大连"},
+			{label:"福州", data:"福州"},
+			{label:"三亚", data:"三亚"},
+			{label:"杭州", data:"杭州"},
+			{label:"桂林", data:"桂林"},
+			{label:"拉萨", data:"拉萨"},
+			{label:"厦门", data:"厦门"},
+			{label:"西安", data:"西安"},
+			{label:"乌鲁木齐", data:"乌鲁木齐"} ]);
+		
+		[Bindable]
+		private var cityGoIndex:int = 0;
+		[Bindable]
+		private var cityBackIndex:int = 0;
+		
+		private function initApp():void 
+		{
+			//System.useCodePage = true;
+			c1 = Application.application.parameters.c1 || c1;
+			c2 = Application.application.parameters.c2 || c2;
+			goDate = Application.application.parameters.goDate || goDate;
+			backDate = Application.application.parameters.backDate || backDate;
+			
+			var i:int = 0;
+			for (i=0; i<cities.length; ++i)
+			{
+				if (c1 == cities[i].data)
+				{
+					cityGoIndex = i;
+					break;
+				}
+			}
+			
+			for (i=0; i<cities.length; ++i)
+			{
+				if (c2 == cities[i].data)
+				{
+					cityBackIndex = i;
+					break;
+				}
+			}
+			
+			hs.send();
+		}
+		
+		private function parseDate(s:String):Date 
+		{
+			var a:Array = s.split("-");
+			return new Date(a[0], a[1], a[2]);
+		}
+		
+		private function dayLabel(cat:Object, pcat:Object, ax:CategoryAxis, catItem:Object):String 
+		{
+			var m:String = cat.toString().split("-")[1];
+			var d:String = cat.toString().split("-")[2];
+			var weekday:String = dateFormatter.format(StringUtil.trim(cat.toString()));
+			if ("Saturday" == weekday || "Sunday" == weekday)
+			{
+				d = "<font color='#FF0000'>" + d + "</font>";
+			}
+			else if (begMonth != endMonth && m == endMonth)
+			{
+				d = "<font color='#FFAD01'>" + d + "</font>";
+			}
+			return d;
+		}
+		
+		private function priceLabel(cat:Object, pcat:Object, ax:CategoryAxis, catItem:Object):String 
+		{
+			return cat.toString() + "元";
+		}
+		
+		public function myDataTip(e:ChartItemEvent):String 
+		{
+			return "a:<B>$b</B>";
+		}
+		
+		public function resultHandler(e:ResultEvent):void
+		{
+			if (e.result.data == null)
+			{
+				return;
+			}
+			allVisible = true;
+			itemData = e.result.data.item;
+			summaryData = e.result.data.summary;
+			DataModel.initAllData(e.result.data.item, e.result.data.summary, c1, c2);
+			
+			var s:String = (String)(DataModel.allData.getItemAt(0).day);
+			begMonth = s.split("-")[1];
+			s = (String)(DataModel.allData.getItemAt(DataModel.allData.length-1).day);
+			endMonth = s.split("-")[1];
+			
+			if (begMonth != endMonth)
+			{
+				horiTitle = "日期(" + begMonth + "月-" + endMonth + "月)";
+			}
+			else
+			{
+				horiTitle = "日期(" + begMonth + "月)";
+			}
+			
+			// vertical axis
+			highest = summaryData.highPrice1;
+			if (highest < summaryData.highPrice2)
+			{
+				highest = summaryData.highPrice2;
+			}
+			interval = highest / 10;
+			highest += interval;
+			
+			// verticle lines
+			vertLineGo = new ArrayCollection([{day:goDate, price:0}, 
+				{day:goDate, price:highest}]);
+			vertLineBack = new ArrayCollection([{day:backDate, price:0}, 
+				{day:backDate, price:highest}]);
+			
+			// render other components
+			title = c1 + "-" + c2 + "未来一月票价行情";
+			goLabel = c1 + "-" + c2 + " 一月内 最低价：" + summaryData.lowPrice1 + "元 最高价：" + summaryData.highPrice1 + "元";
+			backLabel = c2 + "-" + c1 + " 一月内 最低价：" + summaryData.lowPrice2 + "元 最高价：" + summaryData.highPrice2 + "元";
+		
+			application.enabled = true;
+		}
+		
+		private function clickData(e:ChartItemEvent):void
+		{
+			if (e.hitData.element.name == "去程")
+			{
+				navigateToURL(new URLRequest(encodeURI("/"+c1+"-"+c2+".html?departDate="+e.hitData.item.day)), "_blank");
+			}
+			else
+			{
+				navigateToURL(new URLRequest(encodeURI("/"+c2+"-"+c1+".html?departDate="+e.hitData.item.day)), "_blank");
+			}
+		}
+		
+		/*private function cbGoCloseHandler(event:Event):void
+		{
+			var city1:String = ComboBox(event.target).selectedItem.data;
+			if (city1 == c2)
+			{
+				reviewEnabled = false;
+			}
+			else if (c1 != city1)
+			{
+				reviewEnabled = true;
+			}
+		} 
+				
+		private function cbBackCloseHandler(event:Event):void
+		{
+			var city2:String = ComboBox(event.target).selectedItem.data;
+			if (city2 == c1)
+			{
+				reviewEnabled = false;
+			}
+			else if (c2 != city2)
+			{
+				reviewEnabled = true;
+			}
+		}*/
+		
+		private function reviewTrendChart():void
+		{
+			var city1:String = cbGo.selectedItem.data;
+			var city2:String = cbBack.selectedItem.data;
+			if (city1 == city2)
+			{
+				Alert.show("您选择的起始城市和到达城市相同, 请重新选择.", "温馨提示");
+			}
+			else
+			{
+				c1 = city1;
+				c2 = city2;
+				hs.send();
+				application.enabled = false;
+			}
+		}
+		
+		private function faultHandler(event:FaultEvent):void
+		{
+			// do nothing
+			Alert.show("您选择的两个城市之间没有航线, 请重新选择.", "温馨提示");
+			application.enabled = true;
+		}
+	]]>
+	</mx:Script>
+	<!--url="http://www.tourbao.com/special.do; /special.do"-->
+	<mx:HTTPService id="hs" method="POST" url="/special.do"
+		useProxy="false" showBusyCursor="true" result="resultHandler(event)"
+		fault="faultHandler(event)">
+		<mx:request xmlns="">
+			<type>flightMonth</type>
+			<startCity>{c1}</startCity>
+			<destCity>{c2}</destCity>
+		</mx:request>
+	</mx:HTTPService>
+	
+	<mx:DateFormatter id="dateFormatter" formatString="EEEE"/>
+	
+	<mx:Style>
+	Label
+	{
+		fontSize:12;
+	}
+	Button
+	{
+		fontSize:12;
+	}
+	PlotSeries
+	{
+		radius:4;
+	}
+	CheckBox
+	{
+		fontSize:12;
+	}
+	ComboBox
+	{
+		fontSize:12;
+	}
+	Alert
+	{
+		fontSize:12;
+	}
+	.title
+	{
+		 fontWeight:bold;
+		 fontSize:15;
+	}
+	.axisTitleStyle 
+	{
+		fontSize:12;
+	}
+	</mx:Style>
+	
+	<mx:VBox width="100%" height="100%" backgroundColor="#FFFFFF" visible="{allVisible}">
+		<mx:Canvas width="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+			<mx:HBox width="100%">
+				<mx:Spacer width="40"/>
+				<mx:VBox width="324" height="100%" horizontalScrollPolicy="off"> 
+					<mx:HBox>
+						<mx:Spacer width="40"/>
+						<mx:Label text="{title}" styleName="title"/>
+						<!--<mx:Label text="更新时间：{summ
+						aryData.updateTime}前"/>
+						<mx:Spacer width="10"/>-->
+					</mx:HBox>
+					<mx:CheckBox id="chkbGo" selected="true" 
+						label="{goLabel}" color="#ff0000" />
+					<mx:CheckBox id="chkbBack" selected="true" 		
+						label="{backLabel}" color="#3366cc" />
+				</mx:VBox>
+				<mx:VBox width="200" height="100%" horizontalAlign="center"> 
+					<mx:HBox>
+						<mx:Label text="请选择起始城市:"/>
+						<mx:ComboBox id="cbGo" dataProvider="{cities}" width="92"
+							selectedIndex="{cityGoIndex}" />
+					</mx:HBox>
+					<mx:HBox>
+						<mx:Label text="请选择到达城市:"/>
+						<mx:ComboBox id="cbBack" dataProvider="{cities}" width="92"
+							selectedIndex="{cityBackIndex}" />
+					</mx:HBox>
+					<mx:Button label="更新趋势图" click="reviewTrendChart()" enabled="{reviewEnabled}"/>
+				</mx:VBox>
+			</mx:HBox>
+			<mx:Label text="{vetiTitle}" x="10" y="65" fontSize="12"/>
+		</mx:Canvas>
+		
+		<mx:Canvas width="100%" height="100%">
+			<mx:BubbleChart dataProvider="{itemData}" itemClick="clickData(event)"
+				showDataTips="true" width="100%" height="100%" dataTipMode="single" dataTipRenderer="FlightDatatipSkin"
+				axisTitleStyleName="axisTitleStyle">
+				<mx:horizontalAxis>
+					<mx:CategoryAxis id="haxisDay" categoryField="day" labelFunction="dayLabel" 
+						title="{horiTitle}" ticksBetweenLabels="false"/>
+				</mx:horizontalAxis>
+
+				<mx:verticalAxis>
+	                <mx:LinearAxis id="vaxisPrice" maximum="{highest}" interval="{interval}" />
+	            </mx:verticalAxis>
+
+				<mx:horizontalAxisRenderers>
+					<mx:AxisRenderer axis="{haxisDay}">
+						<mx:axisStroke>
+							<mx:Stroke weight="1"/>
+						</mx:axisStroke>
+						
+						<mx:tickStroke>
+							<mx:Stroke weight="1"/>
+						</mx:tickStroke>
+						<mx:minorTickStroke>
+							<mx:Stroke weight="1"/>
+						</mx:minorTickStroke>
+					</mx:AxisRenderer>
+				</mx:horizontalAxisRenderers>
+	
+				<mx:verticalAxisRenderers>
+					<mx:AxisRenderer axis="{vaxisPrice}">
+						<mx:axisStroke>
+							<mx:Stroke weight="1"/>
+						</mx:axisStroke>
+						<mx:tickStroke>
+							<mx:Stroke weight="1"/>
+						</mx:tickStroke>
+						<mx:minorTickStroke>
+							<mx:Stroke weight="1"/>
+						</mx:minorTickStroke>
+					</mx:AxisRenderer>
+				</mx:verticalAxisRenderers>
+				
+				<mx:series>
+					<!-- the verticle line -->
+					<mx:LineSeries id="vlineGo" yField="price" xField="day" dataProvider="{vertLineGo}"
+						 interactive="false" visible="{chkbGo.selected}">
+						<mx:lineStroke>
+							<mx:Stroke color="#ff0000" weight="1"/>
+						</mx:lineStroke>
+					</mx:LineSeries>
+					<mx:LineSeries id="vlineBack" yField="price" xField="day" dataProvider="{vertLineBack}"
+						interactive="false" visible="{chkbBack.selected}">
+						<mx:lineStroke>
+							<mx:Stroke color="#3366cc" weight="1"/>
+						</mx:lineStroke>
+					</mx:LineSeries>
+					
+					<mx:LineSeries id="lineGo" yField="price1" xField="day" name="去程"
+						 visible="{chkbGo.selected}">
+						<mx:lineStroke>
+							<mx:Stroke color="#ff0000" weight="1"/>
+						</mx:lineStroke>
+					</mx:LineSeries>
+					<mx:PlotSeries id="plotGo"
+						xField="day" yField="price1"
+						itemRenderer="mx.charts.renderers.CircleItemRenderer" 
+						name="去程" visible="{chkbGo.selected}"
+						creationComplete="plotGo.setStyle('fill', [0xff0000]);" />
+					<mx:LineSeries id="lineBack" yField="price2" xField="day" name="返程"
+						 visible="{chkbBack.selected}">
+						<mx:lineStroke>
+							<mx:Stroke color="#3366cc" weight="1"/>
+						</mx:lineStroke>
+					</mx:LineSeries>
+					<mx:PlotSeries id="plotBack" xField="day" yField="price2"
+						itemRenderer="mx.charts.renderers.CircleItemRenderer"
+						name="返程" visible="{chkbBack.selected}"
+						creationComplete="plotBack.setStyle('fill', [0x3366cc]);" />
+				</mx:series>
+				<mx:backgroundElements>
+	                <mx:Array>
+	                    <mx:GridLines direction="horizontal">
+	                        <mx:horizontalStroke>
+	                            <mx:Stroke weight="1" color="#CCCCCC"/>
+	                        </mx:horizontalStroke>
+	                    </mx:GridLines>
+	                </mx:Array>
+	            </mx:backgroundElements>
+			</mx:BubbleChart>
+		</mx:Canvas>
+	</mx:VBox>
+
+</mx:Application>
