@@ -2,7 +2,8 @@
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="*"
 initialize="initApp()" backgroundColor="0xFFFFFF" layout="vertical" 
 paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
-	<!-- /chart.swf?c1=杭州&c2=北京&goDate=2008-10-24&backDate=2008-10-29&version=20081020 -->
+	<!-- /chart.swf?c1=杭州&c2=北京&goDate=2008-10-24&backDate=2008-10-29&version=20081020 
+		javascript can call refreshChart(c1:String, c2:String) for a new chart-->
 	<mx:Script><![CDATA[
 		import mx.managers.CursorManager;
 		import chart.DataModel;
@@ -16,7 +17,6 @@ paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
 		import mx.effects.Fade;
 		import mx.effects.Move;
 		import mx.effects.Parallel;
-		import mx.charts.HitData;
 		import mx.collections.ArrayCollection;
 		import mx.controls.Alert;
 		import mx.rpc.events.ResultEvent;
@@ -125,6 +125,9 @@ paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
 			}
 			
 			hs.send();
+			
+			// for javascript call.
+			ExternalInterface.addCallback("refreshChart", refreshChart);
 		}
 		
 		private function parseDate(s:String):Date 
@@ -219,44 +222,17 @@ paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
 			}
 		}
 		
-		/*private function cbGoCloseHandler(event:Event):void
+		private function refreshChart(c1:String, c2:String):void
 		{
-			var city1:String = ComboBox(event.target).selectedItem.data;
-			if (city1 == c2)
-			{
-				reviewEnabled = false;
-			}
-			else if (c1 != city1)
-			{
-				reviewEnabled = true;
-			}
-		} 
-				
-		private function cbBackCloseHandler(event:Event):void
-		{
-			var city2:String = ComboBox(event.target).selectedItem.data;
-			if (city2 == c1)
-			{
-				reviewEnabled = false;
-			}
-			else if (c2 != city2)
-			{
-				reviewEnabled = true;
-			}
-		}*/
-		
-		private function reviewTrendChart():void
-		{
-			var city1:String = cbGo.selectedItem.data;
-			var city2:String = cbBack.selectedItem.data;
-			if (city1 == city2)
+			if (c1 == c2)
 			{
 				Alert.show("您选择的起始城市和到达城市相同, 请重新选择.", "温馨提示");
 			}
 			else
 			{
-				c1 = city1;
-				c2 = city2;
+				this.c1 = c1;
+				this.c2 = c2;
+				
 				hs.send();
 				application.enabled = false;
 			}
@@ -300,10 +276,6 @@ paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
 	{
 		fontSize:12;
 	}
-	ComboBox
-	{
-		fontSize:12;
-	}
 	Alert
 	{
 		fontSize:12;
@@ -322,8 +294,8 @@ paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
 	<mx:VBox width="100%" height="100%" backgroundColor="#FFFFFF" visible="{allVisible}">
 		<mx:Canvas width="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 			<mx:HBox width="100%">
-				<mx:Spacer width="40"/>
-				<mx:VBox width="324" height="100%" horizontalScrollPolicy="off"> 
+				<mx:Spacer width="100"/>
+				<mx:VBox height="100%" horizontalScrollPolicy="off"> 
 					<mx:HBox>
 						<mx:Spacer width="40"/>
 						<mx:Label text="{title}" styleName="title"/>
@@ -335,19 +307,6 @@ paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
 						label="{goLabel}" color="#ff0000" />
 					<mx:CheckBox id="chkbBack" selected="true" 		
 						label="{backLabel}" color="#3366cc" />
-				</mx:VBox>
-				<mx:VBox width="200" height="100%" horizontalAlign="center"> 
-					<mx:HBox>
-						<mx:Label text="请选择起始城市:"/>
-						<mx:ComboBox id="cbGo" dataProvider="{cities}" width="92"
-							selectedIndex="{cityGoIndex}" />
-					</mx:HBox>
-					<mx:HBox>
-						<mx:Label text="请选择到达城市:"/>
-						<mx:ComboBox id="cbBack" dataProvider="{cities}" width="92"
-							selectedIndex="{cityBackIndex}" />
-					</mx:HBox>
-					<mx:Button label="更新趋势图" click="reviewTrendChart()" enabled="{reviewEnabled}"/>
 				</mx:VBox>
 			</mx:HBox>
 			<mx:Label text="{vetiTitle}" x="10" y="65" fontSize="12"/>
