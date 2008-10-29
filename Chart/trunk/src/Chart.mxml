@@ -3,7 +3,8 @@
 initialize="initApp()" backgroundColor="0xFFFFFF" layout="vertical" 
 paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
 	<!-- /chart.swf?c1=杭州&c2=北京&goDate=2008-10-24&backDate=2008-10-29&version=20081020 
-		javascript can call refreshChart(c1:String, c2:String) for a new chart-->
+		javascript can call refreshChart(c1:String, c2:String):void for a new chart
+		updateGoBackDate(goDate:String, backDate:String):void for new go and back date -->
 	<mx:Script><![CDATA[
 		import mx.managers.CursorManager;
 		import chart.DataModel;
@@ -59,8 +60,10 @@ paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
 		[Bindable]
 		private var interval:int;
 		
-		private var goDate:String = "1970-01-01";
-		private var backDate:String = "1970-01-01";
+		private const DEFAULT_DATE:String = "1970-01-01";
+		
+		private var goDate:String = DEFAULT_DATE;
+		private var backDate:String = DEFAULT_DATE;
 
 		//public static var allData:ArrayCollection;
 		[Bindable]
@@ -128,6 +131,7 @@ paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
 			
 			// for javascript call.
 			ExternalInterface.addCallback("refreshChart", refreshChart);
+			ExternalInterface.addCallback("updateGoBackDate", updateGoBackDate);
 		}
 		
 		private function parseDate(s:String):Date 
@@ -235,6 +239,24 @@ paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
 				
 				hs.send();
 				application.enabled = false;
+			}
+		}
+		
+		private function updateGoBackDate(goDate:String, backDate:String):void
+		{
+			if (goDate != this.goDate)
+			{
+				this.goDate = goDate == null || StringUtil.trim(goDate) == "" 
+					? DEFAULT_DATE : goDate;
+				vertLineGo = new ArrayCollection([{day:this.goDate, price:0}, 
+					{day:this.goDate, price:highest}]);
+			}
+			if (backDate != this.backDate)
+			{
+				this.backDate = backDate == null || StringUtil.trim(backDate) == "" 
+					? DEFAULT_DATE : backDate;
+				vertLineBack = new ArrayCollection([{day:this.backDate, price:0}, 
+					{day:this.backDate, price:highest}]);
 			}
 		}
 		
