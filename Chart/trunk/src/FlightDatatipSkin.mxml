@@ -34,6 +34,8 @@
 			private var _link:String;
 			[Bindable]
 			private var _name:String;
+			[Bindable]
+			private var _priceColor:uint;
 			
 			private var _canHind:Boolean = false;
 			
@@ -74,6 +76,7 @@
 						_price = item.price1 + "元(" + getPriceString(item.discount1) + ")";
 						_city = DataModel.cityBegin + "-" + DataModel.cityEnd;
 						_time = item.departTime1 + "-" + item.arriveTime1;
+						_priceColor = 0xFF0000;
 					}
 					else
 					{
@@ -82,6 +85,7 @@
 						_price = item.price2 + "元(" + getPriceString(item.discount2) + ")";
 						_city = DataModel.cityEnd + "-" + DataModel.cityBegin;
 						_time = item.departTime2 + "-" + item.arriveTime2;
+						_priceColor = 0x3366cc;
 					}
 					_day = item.day;
 					_link = "查看详情>>";
@@ -117,7 +121,7 @@
 
 	<mx:Image horizontalAlign="center" source="{_icon}" />
 	<mx:Label text="{_airline}" width="100%" textAlign="center" fontSize="12" />
-	<mx:Label text="{_price}" width="100%" textAlign="center" fontWeight="bold" fontSize="12" color="#FFAD01"/>
+	<mx:Label text="{_price}" width="100%" textAlign="center" fontWeight="bold" fontSize="12" color="{_priceColor}"/>
 	<mx:Label text="{_day}" width="100%" textAlign="center" fontWeight="bold" fontSize="12" />
 	<mx:Label text="{_city}" width="100%" textAlign="center" fontSize="12" />
 	<mx:Label text="{_time}" width="100%" textAlign="center" fontSize="12" />
