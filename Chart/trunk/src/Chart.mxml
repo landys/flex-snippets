@@ -40,6 +40,8 @@ paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
 		[Bindable]
 		private var title:String = "";
 		[Bindable]
+		private var titleDesc:String = "";
+		[Bindable]
 		private var goLabel:String = "";
 		[Bindable]
 		private var backLabel:String = "";
@@ -64,6 +66,9 @@ paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
 		
 		private var goDate:String = DEFAULT_DATE;
 		private var backDate:String = DEFAULT_DATE;
+		
+		// if it is smaller than the WIDTH_LIMIT, the data will show a half.
+		private const WIDTH_LIMIT:int = 578;
 
 		//public static var allData:ArrayCollection;
 		[Bindable]
@@ -208,6 +213,7 @@ paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
 			
 			// render other components
 			title = c1 + "-" + c2 + "未来一月票价行情";
+			titleDesc = "(趋势图仅为参考，请以实际搜索结果为准)";
 			goLabel = c1 + "-" + c2 + " 一月内 最低价：" + summaryData.lowPrice1 + "元 最高价：" + summaryData.highPrice1 + "元";
 			backLabel = c2 + "-" + c1 + " 一月内 最低价：" + summaryData.lowPrice2 + "元 最高价：" + summaryData.highPrice2 + "元";
 		
@@ -266,6 +272,11 @@ paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
 			Alert.show("您选择的两个城市之间没有航线, 请重新选择.", "温馨提示");
 			application.enabled = true;
 		}
+		
+		/*private function ShowSizeClick():void
+		{
+			Alert.show(this.width + "," + this.height);
+		}*/
 	]]>
 	</mx:Script>
 	<!--url="http://www.tourbao.com/special.do; /special.do"-->
@@ -307,6 +318,10 @@ paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
 		 fontWeight:bold;
 		 fontSize:15;
 	}
+	.titleDesc
+	{
+		 fontSize:12;
+	}
 	.axisTitleStyle 
 	{
 		fontSize:12;
@@ -315,23 +330,19 @@ paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
 	
 	<mx:VBox width="100%" height="100%" backgroundColor="#FFFFFF" visible="{allVisible}">
 		<mx:Canvas width="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
-			<mx:HBox width="100%">
-				<mx:Spacer width="100"/>
-				<mx:VBox height="100%" horizontalScrollPolicy="off"> 
-					<mx:HBox>
-						<mx:Spacer width="40"/>
-						<mx:Label text="{title}" styleName="title"/>
-						<!--<mx:Label text="更新时间：{summ
-						aryData.updateTime}前"/>
-						<mx:Spacer width="10"/>-->
-					</mx:HBox>
-					<mx:CheckBox id="chkbGo" selected="true" 
-						label="{goLabel}" color="#ff0000" />
-					<mx:CheckBox id="chkbBack" selected="true" 		
-						label="{backLabel}" color="#3366cc" />
-				</mx:VBox>
-			</mx:HBox>
-			<mx:Label text="{vetiTitle}" x="10" y="65" fontSize="12"/>
+			<mx:VBox width="100%"  horizontalAlign="center">
+				<mx:HBox verticalAlign="bottom" horizontalGap="0">
+					<mx:Label text="{title}" styleName="title"/>
+					<mx:Label text="{titleDesc}" styleName="titleDesc"/>
+				</mx:HBox>
+				<mx:CheckBox id="chkbGo" selected="true" 
+					label="{goLabel}" color="#ff0000" />
+				<mx:CheckBox id="chkbBack" selected="true" 		
+					label="{backLabel}" color="#3366cc" />
+			</mx:VBox>
+			<!--</mx:HBox>-->
+			<mx:Label text="{vetiTitle}" x="10" y="68" fontSize="12"/>
+			<!--<mx:Button label="abcdefg" x="40" y="68" fontSize="12" click="ShowSizeClick()"/>-->
 		</mx:Canvas>
 		
 		<mx:Canvas width="100%" height="100%">
@@ -348,7 +359,7 @@ paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
 	            </mx:verticalAxis>
 
 				<mx:horizontalAxisRenderers>
-					<mx:AxisRenderer axis="{haxisDay}">
+					<mx:AxisRenderer axis="{haxisDay}" canDropLabels="true">
 						<mx:axisStroke>
 							<mx:Stroke weight="1"/>
 						</mx:axisStroke>
