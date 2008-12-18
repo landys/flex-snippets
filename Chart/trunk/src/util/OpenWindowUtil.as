@@ -5,6 +5,11 @@ package util
 	import flash.net.navigateToURL;
 	import flash.external.ExternalInterface;
 	
+	/**
+	 * navigateToURL may be intercepted by some browsers like ie7.
+	 * So for different browsers, use different way to open a new url, 
+	 * and go through the popup window interceptions.
+	 */
 	public class OpenWindowUtil
 	{
 		public static function openWindow(url:String, window:String="_blank", features:String=""):void{
