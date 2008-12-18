@@ -40,8 +40,6 @@ paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
 		[Bindable]
 		private var title:String = "";
 		[Bindable]
-		private var titleDesc:String = "";
-		[Bindable]
 		private var goLabel:String = "";
 		[Bindable]
 		private var backLabel:String = "";
@@ -187,13 +185,14 @@ paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
 			s = (String)(DataModel.allData.getItemAt(DataModel.allData.length-1).day);
 			endMonth = s.split("-")[1];
 			
+			var info:String = " (趋势图仅为参考，请以实际搜索结果为准)";
 			if (begMonth != endMonth)
 			{
-				horiTitle = "日期(" + begMonth + "月-" + endMonth + "月)";
+				horiTitle = "日期(" + begMonth + "月-" + endMonth + "月)" + info;
 			}
 			else
 			{
-				horiTitle = "日期(" + begMonth + "月)";
+				horiTitle = "日期(" + begMonth + "月)" + info;
 			}
 			
 			// vertical axis
@@ -213,7 +212,7 @@ paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
 			
 			// render other components
 			title = c1 + "-" + c2 + "未来一月票价行情";
-			titleDesc = "(趋势图仅为参考，请以实际搜索结果为准)";
+			//titleDesc = "<font size=\"12\">(趋势图仅为参考，请以实际搜索结果为准)</font>";
 			goLabel = c1 + "-" + c2 + " 一月内 最低价：" + summaryData.lowPrice1 + "元 最高价：" + summaryData.highPrice1 + "元";
 			backLabel = c2 + "-" + c1 + " 一月内 最低价：" + summaryData.lowPrice2 + "元 最高价：" + summaryData.highPrice2 + "元";
 		
@@ -318,10 +317,6 @@ paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
 		 fontWeight:bold;
 		 fontSize:15;
 	}
-	.titleDesc
-	{
-		 fontSize:12;
-	}
 	.axisTitleStyle 
 	{
 		fontSize:12;
@@ -331,10 +326,7 @@ paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
 	<mx:VBox width="100%" height="100%" backgroundColor="#FFFFFF" visible="{allVisible}">
 		<mx:Canvas width="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 			<mx:VBox width="100%"  horizontalAlign="center">
-				<mx:HBox verticalAlign="bottom" horizontalGap="0">
-					<mx:Label text="{title}" styleName="title"/>
-					<mx:Label text="{titleDesc}" styleName="titleDesc"/>
-				</mx:HBox>
+				<mx:Label text="{title}" styleName="title"/>
 				<mx:CheckBox id="chkbGo" selected="true" 
 					label="{goLabel}" color="#ff0000" />
 				<mx:CheckBox id="chkbBack" selected="true" 		
