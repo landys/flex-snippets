@@ -17,6 +17,7 @@
 			import mx.charts.HitData;
 			import chart.DataModel;
 			import mx.charts.series.PlotSeries;
+			import util.OpenWindowUtil;
 
 			[Bindable]
 			private var _icon:String;
@@ -108,11 +109,13 @@
 			{
 				if (_name == "去程")
 				{
-					navigateToURL(new URLRequest(encodeURI("/"+DataModel.cityBegin+"-"+DataModel.cityEnd+".html?departDate="+_day)), "_blank");
+					OpenWindowUtil.openWindow("/"+DataModel.cityBegin+"-"+DataModel.cityEnd+".html?departDate="+_day, "_blank");
+					//navigateToURL(new URLRequest(encodeURI("/"+DataModel.cityBegin+"-"+DataModel.cityEnd+".html?departDate="+_day)), "_blank");
 				}
 				else
 				{
-					navigateToURL(new URLRequest(encodeURI("/"+DataModel.cityEnd+"-"+DataModel.cityBegin+".html?departDate="+_day)), "_blank");
+					OpenWindowUtil.openWindow("/"+DataModel.cityEnd+"-"+DataModel.cityBegin+".html?departDate="+_day, "_blank");
+					//navigateToURL(new URLRequest(encodeURI("/"+DataModel.cityEnd+"-"+DataModel.cityBegin+".html?departDate="+_day)), "_blank");
 				}
 			}
 

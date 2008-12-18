@@ -26,6 +26,7 @@ paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
 		import chart.DataModel;
 		import mx.formatters.DateFormatter;
 		import mx.utils.StringUtil;
+		import util.OpenWindowUtil;
 		
 		
 		// c1 出发城市， c2 到达城市
@@ -223,11 +224,13 @@ paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
 		{
 			if (e.hitData.element.name == "去程")
 			{
-				navigateToURL(new URLRequest(encodeURI("/"+c1+"-"+c2+".html?departDate="+e.hitData.item.day)), "_blank");
+				OpenWindowUtil.openWindow("/"+c1+"-"+c2+".html?departDate="+e.hitData.item.day, "_blank");
+				//navigateToURL(new URLRequest(encodeURI("/"+c1+"-"+c2+".html?departDate="+e.hitData.item.day)), "_blank");
 			}
 			else
 			{
-				navigateToURL(new URLRequest(encodeURI("/"+c2+"-"+c1+".html?departDate="+e.hitData.item.day)), "_blank");
+				OpenWindowUtil.openWindow("/"+c2+"-"+c1+".html?departDate="+e.hitData.item.day, "_blank");
+				//navigateToURL(new URLRequest(encodeURI("/"+c2+"-"+c1+".html?departDate="+e.hitData.item.day)), "_blank");
 			}
 		}
 		
