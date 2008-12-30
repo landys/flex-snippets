@@ -2,7 +2,7 @@ package chart
 {
 	import mx.collections.ArrayCollection;
 	
-	public class DataModel
+	public final class DataModel
 	{
 		private static var _allData:ArrayCollection;
 		
@@ -12,12 +12,15 @@ package chart
 		
 		private static var _cityEnd:String;
 		
-		public static function initAllData(data:ArrayCollection, summaryData:Object, c1:String, c2:String):void
+		private static var _host:String;
+		
+		public static function initAllData(data:ArrayCollection, summaryData:Object, c1:String, c2:String, host:String):void
 		{
 			_allData = data;
 			_summaryData = summaryData;
 			_cityBegin = c1;
 			_cityEnd = c2;
+			_host = host;
 		}
 		
 		public static function get cityBegin():String
@@ -28,6 +31,11 @@ package chart
 		public static function get cityEnd():String
 		{
 			return _cityEnd;
+		}
+		
+		public static function get host():String
+		{
+			return _host;
 		}
 		
 		public static function get allData():ArrayCollection
