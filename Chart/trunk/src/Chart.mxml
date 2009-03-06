@@ -106,6 +106,9 @@ paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
 		[Bindable]
 		private var cityBackIndex:int = 0;
 		
+		private const hintInfo:String = "抱歉！暂不支持您选择的两个城市。请重新选择。";
+		private const hintSum:String = "温馨提示：";
+		
 		private function initApp():void 
 		{
 			//System.useCodePage = true;
@@ -220,10 +223,14 @@ paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
 				{day:backDate, price:highest}]);
 			
 			// render other components
-			title = c1 + "-" + c2 + "未来一月票价行情";
+			title = c1 + "-" + c2 + " 未来一月票价格趋势";
 			//titleDesc = "<font size=\"12\">(趋势图仅为参考，请以实际搜索结果为准)</font>";
-			goLabel = c1 + "-" + c2 + " 一月内 最低价：" + summaryData.lowPrice1 + "元 最高价：" + summaryData.highPrice1 + "元";
-			backLabel = c2 + "-" + c1 + " 一月内 最低价：" + summaryData.lowPrice2 + "元 最高价：" + summaryData.highPrice2 + "元";
+			goLabel = c1 + "-" + c2 + " 一月内 最低价：￥" + summaryData.lowPrice1 + "(" + summaryData.lowDiscount1 + "折) 最高价：￥" + summaryData.highPrice1 + "(" + summaryData.highDiscount1 + "折)";
+			backLabel = c2 + "-" + c1 + " 一月内 最低价：￥" + summaryData.lowPrice2 + "(" + summaryData.lowDiscount2 + "折) 最高价：￥" + summaryData.highPrice2 + "(" + summaryData.highDiscount2 + "折)";
+			
+			// for line animation
+			plotGo.visible = false;
+			plotGo.visible = false;
 		
 			application.enabled = true;
 		}
@@ -247,7 +254,7 @@ paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
 		{
 			if (c1 == c2)
 			{
-				Alert.show("您选择的起始城市和到达城市相同, 请重新选择.", "温馨提示");
+				Alert.show(hintInfo, hintSum);
 			}
 			else
 			{
@@ -280,7 +287,7 @@ paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
 		private function faultHandler(event:FaultEvent):void
 		{
 			// do nothing
-			Alert.show("您选择的两个城市之间没有航线, 请重新选择.", "温馨提示");
+			Alert.show(hintInfo, hintSum);
 			application.enabled = true;
 		}
 		
@@ -340,9 +347,9 @@ paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
 			<mx:VBox width="100%"  horizontalAlign="center">
 				<mx:Label text="{title}" styleName="title"/>
 				<mx:CheckBox id="chkbGo" selected="true" 
-					label="{goLabel}" color="#ff0000" />
+					label="{goLabel}" color="#ff0000" change="plotGo.visible=chkbGo.selected"/>
 				<mx:CheckBox id="chkbBack" selected="true" 		
-					label="{backLabel}" color="#3366cc" />
+					label="{backLabel}" color="#3366cc" change="plotBack.visible=chkbBack.selected" />
 			</mx:VBox>
 			<!--</mx:HBox>-->
 			<mx:Label text="{vetiTitle}" x="10" y="68" fontSize="12"/>
@@ -407,25 +414,25 @@ paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
 					</mx:LineSeries>
 					
 					<mx:LineSeries id="lineGo" yField="price1" xField="day" name="去程"
-						 visible="{chkbGo.selected}">
+						 visible="{chkbGo.selected}" showDataEffect="{plotGoIn}">
 						<mx:lineStroke>
-							<mx:Stroke color="#ff0000" weight="1"/>
+							<mx:Stroke color="#ff0000" weight="2"/>
 						</mx:lineStroke>
 					</mx:LineSeries>
 					<mx:PlotSeries id="plotGo"
 						xField="day" yField="price1"
 						itemRenderer="mx.charts.renderers.CircleItemRenderer" 
-						name="去程" visible="{chkbGo.selected}"
-						creationComplete="plotGo.setStyle('fill', [0xff0000]);" />
+						name="去程" visible="false"
+						creationComplete="plotGo.setStyle('fill', [0xff0000]);"/>
 					<mx:LineSeries id="lineBack" yField="price2" xField="day" name="返程"
-						 visible="{chkbBack.selected}">
+						 visible="{chkbBack.selected}" showDataEffect="{plotBackIn}">
 						<mx:lineStroke>
-							<mx:Stroke color="#3366cc" weight="1"/>
+							<mx:Stroke color="#3366cc" weight="2"/>
 						</mx:lineStroke>
 					</mx:LineSeries>
 					<mx:PlotSeries id="plotBack" xField="day" yField="price2"
 						itemRenderer="mx.charts.renderers.CircleItemRenderer"
-						name="返程" visible="{chkbBack.selected}"
+						name="返程" visible="false"
 						creationComplete="plotBack.setStyle('fill', [0x3366cc]);" />
 				</mx:series>
 				<mx:backgroundElements>
@@ -440,5 +447,8 @@ paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
 			</mx:BubbleChart>
 		</mx:Canvas>
 	</mx:VBox>
+	
+	<mx:SeriesInterpolate id="plotGoIn" elementOffset="15" minimumElementDuration="200" duration="600" effectEnd="plotGo.visible=chkbGo.selected"/>
+	<mx:SeriesInterpolate id="plotBackIn" elementOffset="15" minimumElementDuration="200" duration="600" effectEnd="plotBack.visible=chkbBack.selected"/>
 
 </mx:Application>

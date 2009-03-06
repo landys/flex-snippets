@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml"
-	borderColor="0x86AAE4"
-	backgroundColor="0xFFFFFF"
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+	borderColor="0x9BCE81"
+	backgroundColor="0xE9FEDF"
 	borderStyle="solid"
 	cornerRadius="5"
 	paddingTop="5"
 	paddingBottom="5"
 	paddingRight="10"
 	paddingLeft="10"
-	verticalGap="-2"
-	horizontalAlign="center"
 	rollOut="datatipRollOut(event);"
-	hide="doHide()">
+	hide="doHide()"
+	horizontalScrollPolicy="off"
+	verticalScrollPolicy="off">
 	<mx:Script>
 		<![CDATA[
 			import mx.charts.HitData;
@@ -26,17 +26,29 @@
 			[Bindable]
 			private var _price:String;
 			[Bindable]
+			private var _discount:String;
+			[Bindable]
 			private var _day:String;
 			[Bindable]
 			private var _city:String;
 			[Bindable]
 			private var _time:String;
 			[Bindable]
-			private var _link:String;
+			private var _link:String = "> 更多报价";;
 			[Bindable]
 			private var _name:String;
 			[Bindable]
-			private var _priceColor:uint;
+			private var _siteName:String;
+			[Bindable]
+			private var _updateInfo:String;
+			[Bindable]
+			private var _invalidateInfo:String;
+			[Bindable]
+			private var _priceColor:String = "#FF6403";
+			
+			private var _flightCourseId:String;
+			
+			private var _siteId:String;
 			
 			private var _canHind:Boolean = false;
 			
@@ -69,27 +81,52 @@
 				var item:Object = DataModel.getItem(hd.item.day);
 				if (item != null)
 				{	
+					var updateInfo:String = "";
 					_name = hd.element.name;
 					if (_name == "去程")
 					{
 						_icon = item.icon1;
-						_airline = item.airlines1 + item.code1;
-						_price = item.price1 + "元(" + getPriceString(item.discount1) + ")";
+						_airline = item.airlines1 + " " + item.code1;
+						_price = item.price1;
+						_discount = getPriceString(item.discount1);
 						_city = DataModel.cityBegin + "-" + DataModel.cityEnd;
 						_time = item.departTime1 + "-" + item.arriveTime1;
-						_priceColor = 0xFF0000;
+						//_priceColor = 0xFF0000;
+						updateInfo = item.updateInfo1;
 					}
 					else
 					{
 						_icon = item.icon2;
-						_airline = item.airlines2 + item.code2;
-						_price = item.price2 + "元(" + getPriceString(item.discount2) + ")";
+						_airline = item.airlines2 + " " + item.code2;
+						_price = item.price2;
+						_discount = getPriceString(item.discount2);
 						_city = DataModel.cityEnd + "-" + DataModel.cityBegin;
 						_time = item.departTime2 + "-" + item.arriveTime2;
-						_priceColor = 0x3366cc;
+						//_priceColor = 0x3366cc;
+						updateInfo = item.updateInfo2;
 					}
+					
 					_day = item.day;
-					_link = "查看详情>>";
+					_siteId = item.siteId;
+					_flightCourseId = item.flightCourseId;
+					_siteName = item.siteName;
+					
+					// split updateInfo
+					var index:int = updateInfo.indexOf("(");
+					if (index == -1) 
+					{
+						index = updateInfo.indexOf("（");
+					}
+					if (index != -1)
+					{
+						_updateInfo = updateInfo.substring(0, index);
+						_invalidateInfo = updateInfo.substring(index);
+					}
+					else
+					{
+						_updateInfo = updateInfo;
+						_invalidateInfo = "";
+					}
 				}
 			}
 			
@@ -120,16 +157,42 @@
 				}*/
 			}
 
+			private function siteNameClick():void
+			{
+				ChartUtil.goSiteName(DataModel.cityBegin, DataModel.cityEnd, _name, _day, _siteId, _flightCourseId);
+			}
 		]]>
 	</mx:Script>
 
-	<mx:Image horizontalAlign="center" source="{_icon}" />
-	<mx:Label text="{_airline}" width="100%" textAlign="center" fontSize="12" />
-	<mx:Label text="{_price}" width="100%" textAlign="center" fontWeight="bold" fontSize="12" color="{_priceColor}"/>
-	<mx:Label text="{_day}" width="100%" textAlign="center" fontWeight="bold" fontSize="12" />
-	<mx:Label text="{_city}" width="100%" textAlign="center" fontSize="12" />
-	<mx:Label text="{_time}" width="100%" textAlign="center" fontSize="12" />
-	<mx:Spacer height="6" />
-	<mx:Label id="lblLink" text="{_link}" textAlign="center" fontSize="12" color="#4473A5" textDecoration="underline"
-		buttonMode="true" useHandCursor="true" mouseChildren="false" click="clickData()"/>
-</mx:VBox>
+	<mx:Image horizontalAlign="center" source="{_icon}"  x="5" y="5"/>
+	<mx:Label text="{_airline}" textAlign="center" fontSize="12"  x="30" y="2" width="160"/>
+	<mx:Label width="110" textAlign="center" fontSize="12" y="59" x="78" 
+		htmlText="&lt;font color='{_priceColor}' size='12'&gt;&lt;b&gt;￥&lt;/b>&lt;/font&gt;&lt;font color='#FF6403' size='16'&gt;&lt;b&gt;{_price}&lt;/b&gt;&lt;/font&gt;({_discount})"/>
+	<mx:Label text="{_day}" width="84" textAlign="center" fontSize="12"  x="1" y="40"/>
+	<mx:Label text="{_city}" width="160" textAlign="center" fontSize="12"  x="30" y="18"/>
+	<mx:Label text="{_time}" width="85" textAlign="center" fontSize="12"  x="89" y="40"/>
+	<mx:Label id="lblLink" text="{_siteName}" textAlign="center" fontSize="12" color="#4473A5" textDecoration="underline"
+		buttonMode="true" useHandCursor="true" mouseChildren="false" click="siteNameClick()" x="4" y="61" width="76"/>
+	<mx:Button x="6" y="87" label="{_link}" fontSize="12" click="clickData()"
+		cornerRadius="10" paddingLeft="5" paddingRight="5"
+		buttonMode="true" useHandCursor="true" mouseChildren="false" height="25"/>
+	<mx:Label x="90" y="82" textAlign="center" fontSize="12" text="{_updateInfo}" width="96"/>
+	<mx:Label x="92" y="96" textAlign="center" fontSize="12" text="{_invalidateInfo}" width="94" height="24"/>
+
+	<!--
+	<mx:Image horizontalAlign="center" source="http://s.bijiala.com/style/images/airline_flag/mu.gif"  x="5" y="5"/>
+	<mx:Label text="中国东方航空公司 3U8868" textAlign="center" fontSize="12"  x="30" y="2" width="160"/>
+	<mx:Label width="110" textAlign="center" fontSize="12" y="59" x="78" 
+		htmlText="&lt;font color='#FF6403' size='12'&gt;&lt;b&gt;￥&lt;/b>&lt;/font&gt;&lt;font color='#FF6403' size='16'&gt;&lt;b&gt;778.0&lt;/b&gt;&lt;/font&gt;(4.2折)"/>
+	<mx:Label text="2009-03-04" width="84" textAlign="center" fontSize="12"  x="1" y="40"/>
+	<mx:Label text="乌鲁木齐-澳大利亚" width="160" textAlign="center" fontSize="12"  x="30" y="18"/>
+	<mx:Label text="14:00-18:00" width="85" textAlign="center" fontSize="12"  x="89" y="40"/>
+	<mx:Label id="lblLink" text="我要去哪儿" textAlign="center" fontSize="12" color="#4473A5" textDecoration="underline"
+		buttonMode="true" useHandCursor="true" mouseChildren="false" click="siteNameClick()" x="4" y="61" width="76"/>
+	<mx:Button x="6" y="87" label="> 更多报价" fontSize="12" click="clickData()"
+		cornerRadius="10" paddingLeft="5" paddingRight="5"
+		buttonMode="true" useHandCursor="true" mouseChildren="false" height="25"/>
+	<mx:Label x="90" y="82" textAlign="center" fontSize="12" text="20分钟前报价" width="96"/>
+	<mx:Label x="92" y="96" textAlign="center" fontSize="12" text="(可能已失效)" width="94" height="24"/>
+	-->
+</mx:Canvas>

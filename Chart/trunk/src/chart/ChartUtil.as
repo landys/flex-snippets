@@ -1,6 +1,7 @@
 package chart
 {
 	import util.OpenWindowUtil;
+	import flash.external.ExternalInterface;
 	
 	public final class ChartUtil
 	{
@@ -16,6 +17,26 @@ package chart
 				OpenWindowUtil.openWindow(host+endCity+"-"+begCity+".html?departDate="+day, "_blank");
 				//navigateToURL(new URLRequest(encodeURI("/"+c2+"-"+c1+".html?departDate="+e.hitData.item.day)), "_blank");
 			}
+		}
+		
+		public static function goSiteName(begCity:String, endCity:String, name:String, day:String, siteId:String, flightCourseId:String) : void
+		{
+			var c1:String;
+			var c2:String;
+			if (name == "去程")
+			{
+				c1 = begCity;
+				c2 = endCity;
+			}
+			else
+			{
+				c1 = endCity;
+				c2 = begCity;
+			}
+			
+			ExternalInterface.call('TourBao.Utils.loggerNewWindow', 'ud_flight', siteId, c1, c2, day, '', 
+					'http://www.tourbao.com/urlRedirect.do?type=flight&siteId=' + siteId
+					 + '&flightCourseId=' + flightCourseId + '&flyDate=' + day);
 		}
 	}
 }
