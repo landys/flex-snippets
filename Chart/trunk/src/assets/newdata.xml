@@ -33,9 +33,12 @@
 		<arriveTime2>13:05</arriveTime2>
 		<updateInfo1>16分钟前报价</updateInfo1>
 		<updateInfo2>3小时前报价(可能已失效)</updateInfo2>
-		<siteName>国航</siteName>
-		<siteId>331</siteId>
-		<flightCourseId>3222</flightCourseId>
+		<siteName1>国航</siteName1>
+		<siteName2>我要去哪儿</siteName2>
+		<siteId1>331</siteId1>
+		<siteId2>332</siteId2>
+		<flightCourseId1>3222</flightCourseId1>
+		<flightCourseId2>322332</flightCourseId2>
 	</item>
 	<item>
 		<day>2009-03-07</day>
@@ -57,9 +60,12 @@
 		<arriveTime2>15:50</arriveTime2>
 		<updateInfo1>15分钟前报价</updateInfo1>
 		<updateInfo2>2小时前报价(可能已失效)</updateInfo2>
-		<siteName>我要去哪儿</siteName>
-		<siteId>1111</siteId>
-		<flightCourseId>324324</flightCourseId>
+		<siteName1>我要去哪儿</siteName1>
+		<siteName2>国航</siteName2>
+		<siteId1>331</siteId1>
+		<siteId2>331</siteId2>
+		<flightCourseId1>3222</flightCourseId1>
+		<flightCourseId2>3222</flightCourseId2>
 	</item>
 	<item>
 		<day>2009-03-08</day>
@@ -81,9 +87,12 @@
 		<arriveTime2>10:00</arriveTime2>
 		<updateInfo1>15分钟前报价</updateInfo1>
 		<updateInfo2>2小时前报价(可能已失效)</updateInfo2>
-		<siteName>我要去哪儿</siteName>
-		<siteId>1111</siteId>
-		<flightCourseId>324324</flightCourseId>
+		<siteName1>我要去哪儿</siteName1>
+		<siteName2>国航</siteName2>
+		<siteId1>331</siteId1>
+		<siteId2>331</siteId2>
+		<flightCourseId1>3222</flightCourseId1>
+		<flightCourseId2>3222</flightCourseId2>
 	</item>
 	<item>
 		<day>2009-03-09</day>
@@ -105,9 +114,12 @@
 		<arriveTime2>10:00</arriveTime2>
 		<updateInfo1>15分钟前报价</updateInfo1>
 		<updateInfo2>2小时前报价(可能已失效)</updateInfo2>
-		<siteName>我要去哪儿</siteName>
-		<siteId>1111</siteId>
-		<flightCourseId>324324</flightCourseId>
+		<siteName1>我要去哪儿</siteName1>
+		<siteName2>国航</siteName2>
+		<siteId1>331</siteId1>
+		<siteId2>331</siteId2>
+		<flightCourseId1>3222</flightCourseId1>
+		<flightCourseId2>3222</flightCourseId2>
 	</item>
 	<item>
 		<day>2009-03-10</day>
@@ -129,9 +141,12 @@
 		<arriveTime2>15:00</arriveTime2>
 		<updateInfo1>15分钟前报价</updateInfo1>
 		<updateInfo2>2小时前报价(可能已失效)</updateInfo2>
-		<siteName>我要去哪儿</siteName>
-		<siteId>1111</siteId>
-		<flightCourseId>324324</flightCourseId>
+		<siteName1>我要去哪儿</siteName1>
+		<siteName2>国航</siteName2>
+		<siteId1>331</siteId1>
+		<siteId2>331</siteId2>
+		<flightCourseId1>3222</flightCourseId1>
+		<flightCourseId2>3222</flightCourseId2>
 	</item>
 	<item>
 		<day>2009-03-11</day>
@@ -153,9 +168,12 @@
 		<arriveTime2>15:50</arriveTime2>
 		<updateInfo1>15分钟前报价</updateInfo1>
 		<updateInfo2>2小时前报价(可能已失效)</updateInfo2>
-		<siteName>我要去哪儿</siteName>
-		<siteId>1111</siteId>
-		<flightCourseId>324324</flightCourseId>
+		<siteName1>我要去哪儿</siteName1>
+		<siteName2>国航</siteName2>
+		<siteId1>331</siteId1>
+		<siteId2>331</siteId2>
+		<flightCourseId1>3222</flightCourseId1>
+		<flightCourseId2>3222</flightCourseId2>
 	</item>
 	<item>
 		<day>2009-03-12</day>
@@ -177,9 +195,12 @@
 		<arriveTime2>15:50</arriveTime2>
 		<updateInfo1>15分钟前报价</updateInfo1>
 		<updateInfo2>2小时前报价(可能已失效)</updateInfo2>
-		<siteName>我要去哪儿</siteName>
-		<siteId>1111</siteId>
-		<flightCourseId>324324</flightCourseId>
+		<siteName1>我要去哪儿</siteName1>
+		<siteName2>国航</siteName2>
+		<siteId1>331</siteId1>
+		<siteId2>331</siteId2>
+		<flightCourseId1>3222</flightCourseId1>
+		<flightCourseId2>3222</flightCourseId2>
 	</item>
 	<item>
 		<day>2009-03-13</day>
@@ -201,9 +222,12 @@
 		<arriveTime2>10:00</arriveTime2>
 		<updateInfo1>15分钟前报价</updateInfo1>
 		<updateInfo2>2小时前报价(可能已失效)</updateInfo2>
-		<siteName>我要去哪儿</siteName>
-		<siteId>1111</siteId>
-		<flightCourseId>324324</flightCourseId>
+		<siteName1>我要去哪儿</siteName1>
+		<siteName2>国航</siteName2>
+		<siteId1>331</siteId1>
+		<siteId2>331</siteId2>
+		<flightCourseId1>3222</flightCourseId1>
+		<flightCourseId2>3222</flightCourseId2>
 	</item>
 	<item>
 		<day>2009-03-14</day>
@@ -225,9 +249,12 @@
 		<arriveTime2>15:50</arriveTime2>
 		<updateInfo1>15分钟前报价</updateInfo1>
 		<updateInfo2>2小时前报价(可能已失效)</updateInfo2>
-		<siteName>我要去哪儿</siteName>
-		<siteId>1111</siteId>
-		<flightCourseId>324324</flightCourseId>
+		<siteName1>我要去哪儿</siteName1>
+		<siteName2>国航</siteName2>
+		<siteId1>331</siteId1>
+		<siteId2>331</siteId2>
+		<flightCourseId1>3222</flightCourseId1>
+		<flightCourseId2>3222</flightCourseId2>
 	</item>
 	<item>
 		<day>2009-03-15</day>
@@ -249,9 +276,12 @@
 		<arriveTime2>15:00</arriveTime2>
 		<updateInfo1>15分钟前报价</updateInfo1>
 		<updateInfo2>2小时前报价(可能已失效)</updateInfo2>
-		<siteName>我要去哪儿</siteName>
-		<siteId>1111</siteId>
-		<flightCourseId>324324</flightCourseId>
+		<siteName1>我要去哪儿</siteName1>
+		<siteName2>国航</siteName2>
+		<siteId1>331</siteId1>
+		<siteId2>331</siteId2>
+		<flightCourseId1>3222</flightCourseId1>
+		<flightCourseId2>3222</flightCourseId2>
 	</item>
 	<item>
 		<day>2009-03-16</day>
@@ -273,9 +303,12 @@
 		<arriveTime2>10:00</arriveTime2>
 		<updateInfo1>15分钟前报价</updateInfo1>
 		<updateInfo2>2小时前报价(可能已失效)</updateInfo2>
-		<siteName>我要去哪儿</siteName>
-		<siteId>1111</siteId>
-		<flightCourseId>324324</flightCourseId>
+		<siteName1>我要去哪儿</siteName1>
+		<siteName2>国航</siteName2>
+		<siteId1>331</siteId1>
+		<siteId2>331</siteId2>
+		<flightCourseId1>3222</flightCourseId1>
+		<flightCourseId2>3222</flightCourseId2>
 	</item>
 	<item>
 		<day>2009-03-17</day>
@@ -297,9 +330,12 @@
 		<arriveTime2>09:55</arriveTime2>
 		<updateInfo1>15分钟前报价</updateInfo1>
 		<updateInfo2>2小时前报价(可能已失效)</updateInfo2>
-		<siteName>我要去哪儿</siteName>
-		<siteId>1111</siteId>
-		<flightCourseId>324324</flightCourseId>
+		<siteName1>我要去哪儿</siteName1>
+		<siteName2>国航</siteName2>
+		<siteId1>331</siteId1>
+		<siteId2>331</siteId2>
+		<flightCourseId1>3222</flightCourseId1>
+		<flightCourseId2>3222</flightCourseId2>
 	</item>
 	<item>
 		<day>2009-03-18</day>
@@ -321,9 +357,12 @@
 		<arriveTime2>09:55</arriveTime2>
 		<updateInfo1>15分钟前报价</updateInfo1>
 		<updateInfo2>2小时前报价(可能已失效)</updateInfo2>
-		<siteName>我要去哪儿</siteName>
-		<siteId>1111</siteId>
-		<flightCourseId>324324</flightCourseId>
+		<siteName1>我要去哪儿</siteName1>
+		<siteName2>国航</siteName2>
+		<siteId1>331</siteId1>
+		<siteId2>331</siteId2>
+		<flightCourseId1>3222</flightCourseId1>
+		<flightCourseId2>3222</flightCourseId2>
 	</item>
 	<item>
 		<day>2009-03-19</day>
@@ -345,9 +384,12 @@
 		<arriveTime2>10:00</arriveTime2>
 		<updateInfo1>15分钟前报价</updateInfo1>
 		<updateInfo2>2小时前报价(可能已失效)</updateInfo2>
-		<siteName>我要去哪儿</siteName>
-		<siteId>1111</siteId>
-		<flightCourseId>324324</flightCourseId>
+		<siteName1>我要去哪儿</siteName1>
+		<siteName2>国航</siteName2>
+		<siteId1>331</siteId1>
+		<siteId2>331</siteId2>
+		<flightCourseId1>3222</flightCourseId1>
+		<flightCourseId2>3222</flightCourseId2>
 	</item>
 	<item>
 		<day>2009-03-20</day>
@@ -369,9 +411,12 @@
 		<arriveTime2>10:00</arriveTime2>
 		<updateInfo1>15分钟前报价</updateInfo1>
 		<updateInfo2>2小时前报价(可能已失效)</updateInfo2>
-		<siteName>我要去哪儿</siteName>
-		<siteId>1111</siteId>
-		<flightCourseId>324324</flightCourseId>
+		<siteName1>我要去哪儿</siteName1>
+		<siteName2>国航</siteName2>
+		<siteId1>331</siteId1>
+		<siteId2>331</siteId2>
+		<flightCourseId1>3222</flightCourseId1>
+		<flightCourseId2>3222</flightCourseId2>
 	</item>
 	<item>
 		<day>2009-03-21</day>
@@ -393,9 +438,12 @@
 		<arriveTime2>10:00</arriveTime2>
 		<updateInfo1>15分钟前报价</updateInfo1>
 		<updateInfo2>2小时前报价(可能已失效)</updateInfo2>
-		<siteName>我要去哪儿</siteName>
-		<siteId>1111</siteId>
-		<flightCourseId>324324</flightCourseId>
+		<siteName1>我要去哪儿</siteName1>
+		<siteName2>国航</siteName2>
+		<siteId1>331</siteId1>
+		<siteId2>331</siteId2>
+		<flightCourseId1>3222</flightCourseId1>
+		<flightCourseId2>3222</flightCourseId2>
 	</item>
 	<item>
 		<day>2009-03-22</day>
@@ -417,9 +465,12 @@
 		<arriveTime2>10:00</arriveTime2>
 		<updateInfo1>15分钟前报价</updateInfo1>
 		<updateInfo2>2小时前报价(可能已失效)</updateInfo2>
-		<siteName>我要去哪儿</siteName>
-		<siteId>1111</siteId>
-		<flightCourseId>324324</flightCourseId>
+		<siteName1>我要去哪儿</siteName1>
+		<siteName2>国航</siteName2>
+		<siteId1>331</siteId1>
+		<siteId2>331</siteId2>
+		<flightCourseId1>3222</flightCourseId1>
+		<flightCourseId2>3222</flightCourseId2>
 	</item>
 	<item>
 		<day>2009-03-23</day>
@@ -441,9 +492,12 @@
 		<arriveTime2>10:00</arriveTime2>
 		<updateInfo1>15分钟前报价</updateInfo1>
 		<updateInfo2>2小时前报价(可能已失效)</updateInfo2>
-		<siteName>我要去哪儿</siteName>
-		<siteId>1111</siteId>
-		<flightCourseId>324324</flightCourseId>
+		<siteName1>我要去哪儿</siteName1>
+		<siteName2>国航</siteName2>
+		<siteId1>331</siteId1>
+		<siteId2>331</siteId2>
+		<flightCourseId1>3222</flightCourseId1>
+		<flightCourseId2>3222</flightCourseId2>
 	</item>
 	<item>
 		<day>2009-03-24</day>
@@ -465,9 +519,12 @@
 		<arriveTime2>10:00</arriveTime2>
 		<updateInfo1>15分钟前报价</updateInfo1>
 		<updateInfo2>2小时前报价(可能已失效)</updateInfo2>
-		<siteName>我要去哪儿</siteName>
-		<siteId>1111</siteId>
-		<flightCourseId>324324</flightCourseId>
+		<siteName1>我要去哪儿</siteName1>
+		<siteName2>国航</siteName2>
+		<siteId1>331</siteId1>
+		<siteId2>331</siteId2>
+		<flightCourseId1>3222</flightCourseId1>
+		<flightCourseId2>3222</flightCourseId2>
 	</item>
 	<item>
 		<day>2009-03-25</day>
@@ -489,9 +546,12 @@
 		<arriveTime2>11:10</arriveTime2>
 		<updateInfo1>15分钟前报价</updateInfo1>
 		<updateInfo2>2小时前报价(可能已失效)</updateInfo2>
-		<siteName>我要去哪儿</siteName>
-		<siteId>1111</siteId>
-		<flightCourseId>324324</flightCourseId>
+		<siteName1>我要去哪儿</siteName1>
+		<siteName2>国航</siteName2>
+		<siteId1>331</siteId1>
+		<siteId2>331</siteId2>
+		<flightCourseId1>3222</flightCourseId1>
+		<flightCourseId2>3222</flightCourseId2>
 	</item>
 	<item>
 		<day>2009-03-26</day>
@@ -513,9 +573,12 @@
 		<arriveTime2>10:00</arriveTime2>
 		<updateInfo1>15分钟前报价</updateInfo1>
 		<updateInfo2>2小时前报价(可能已失效)</updateInfo2>
-		<siteName>我要去哪儿</siteName>
-		<siteId>1111</siteId>
-		<flightCourseId>324324</flightCourseId>
+		<siteName1>我要去哪儿</siteName1>
+		<siteName2>国航</siteName2>
+		<siteId1>331</siteId1>
+		<siteId2>331</siteId2>
+		<flightCourseId1>3222</flightCourseId1>
+		<flightCourseId2>3222</flightCourseId2>
 	</item>
 	<item>
 		<day>2009-03-27</day>
@@ -537,9 +600,12 @@
 		<arriveTime2>10:00</arriveTime2>
 		<updateInfo1>15分钟前报价</updateInfo1>
 		<updateInfo2>2小时前报价(可能已失效)</updateInfo2>
-		<siteName>我要去哪儿</siteName>
-		<siteId>1111</siteId>
-		<flightCourseId>324324</flightCourseId>
+		<siteName1>我要去哪儿</siteName1>
+		<siteName2>国航</siteName2>
+		<siteId1>331</siteId1>
+		<siteId2>331</siteId2>
+		<flightCourseId1>3222</flightCourseId1>
+		<flightCourseId2>3222</flightCourseId2>
 	</item>
 	<item>
 		<day>2009-03-28</day>
@@ -561,9 +627,12 @@
 		<arriveTime2>10:00</arriveTime2>
 		<updateInfo1>15分钟前报价</updateInfo1>
 		<updateInfo2>2小时前报价(可能已失效)</updateInfo2>
-		<siteName>我要去哪儿</siteName>
-		<siteId>1111</siteId>
-		<flightCourseId>324324</flightCourseId>
+		<siteName1>我要去哪儿</siteName1>
+		<siteName2>国航</siteName2>
+		<siteId1>331</siteId1>
+		<siteId2>331</siteId2>
+		<flightCourseId1>3222</flightCourseId1>
+		<flightCourseId2>3222</flightCourseId2>
 	</item>
 	<item>
 		<day>2009-03-29</day>
@@ -585,9 +654,12 @@
 		<arriveTime2>23:55</arriveTime2>
 		<updateInfo1>15分钟前报价</updateInfo1>
 		<updateInfo2>2小时前报价(可能已失效)</updateInfo2>
-		<siteName>我要去哪儿</siteName>
-		<siteId>1111</siteId>
-		<flightCourseId>324324</flightCourseId>
+		<siteName1>我要去哪儿</siteName1>
+		<siteName2>国航</siteName2>
+		<siteId1>331</siteId1>
+		<siteId2>331</siteId2>
+		<flightCourseId1>3222</flightCourseId1>
+		<flightCourseId2>3222</flightCourseId2>
 	</item>
 	<item>
 		<day>2009-03-30</day>
@@ -609,9 +681,12 @@
 		<arriveTime2>23:55</arriveTime2>
 		<updateInfo1>15分钟前报价</updateInfo1>
 		<updateInfo2>2小时前报价(可能已失效)</updateInfo2>
-		<siteName>我要去哪儿</siteName>
-		<siteId>1111</siteId>
-		<flightCourseId>324324</flightCourseId>
+		<siteName1>我要去哪儿</siteName1>
+		<siteName2>国航</siteName2>
+		<siteId1>331</siteId1>
+		<siteId2>331</siteId2>
+		<flightCourseId1>3222</flightCourseId1>
+		<flightCourseId2>3222</flightCourseId2>
 	</item>
 	<item>
 		<day>2009-03-31</day>
@@ -633,9 +708,12 @@
 		<arriveTime2>11:30</arriveTime2>
 		<updateInfo1>15分钟前报价</updateInfo1>
 		<updateInfo2>2小时前报价(可能已失效)</updateInfo2>
-		<siteName>我要去哪儿</siteName>
-		<siteId>1111</siteId>
-		<flightCourseId>324324</flightCourseId>
+		<siteName1>我要去哪儿</siteName1>
+		<siteName2>国航</siteName2>
+		<siteId1>331</siteId1>
+		<siteId2>331</siteId2>
+		<flightCourseId1>3222</flightCourseId1>
+		<flightCourseId2>3222</flightCourseId2>
 	</item>
 	<item>
 		<day>2009-04-01</day>
@@ -657,9 +735,12 @@
 		<arriveTime2>23:55</arriveTime2>
 		<updateInfo1>15分钟前报价</updateInfo1>
 		<updateInfo2>2小时前报价(可能已失效)</updateInfo2>
-		<siteName>我要去哪儿</siteName>
-		<siteId>1111</siteId>
-		<flightCourseId>324324</flightCourseId>
+		<siteName1>我要去哪儿</siteName1>
+		<siteName2>国航</siteName2>
+		<siteId1>331</siteId1>
+		<siteId2>331</siteId2>
+		<flightCourseId1>3222</flightCourseId1>
+		<flightCourseId2>3222</flightCourseId2>
 	</item>
 	<item>
 		<day>2009-04-02</day>
@@ -681,9 +762,12 @@
 		<arriveTime2>23:55</arriveTime2>
 		<updateInfo1>15分钟前报价</updateInfo1>
 		<updateInfo2>2小时前报价(可能已失效)</updateInfo2>
-		<siteName>我要去哪儿</siteName>
-		<siteId>1111</siteId>
-		<flightCourseId>324324</flightCourseId>
+		<siteName1>我要去哪儿</siteName1>
+		<siteName2>国航</siteName2>
+		<siteId1>331</siteId1>
+		<siteId2>331</siteId2>
+		<flightCourseId1>3222</flightCourseId1>
+		<flightCourseId2>3222</flightCourseId2>
 	</item>
 	<item>
 		<day>2009-04-03</day>
@@ -705,9 +789,12 @@
 		<arriveTime2>23:55</arriveTime2>
 		<updateInfo1>15分钟前报价</updateInfo1>
 		<updateInfo2>2小时前报价(可能已失效)</updateInfo2>
-		<siteName>我要去哪儿</siteName>
-		<siteId>1111</siteId>
-		<flightCourseId>324324</flightCourseId>
+		<siteName1>我要去哪儿</siteName1>
+		<siteName2>国航</siteName2>
+		<siteId1>331</siteId1>
+		<siteId2>331</siteId2>
+		<flightCourseId1>3222</flightCourseId1>
+		<flightCourseId2>3222</flightCourseId2>
 	</item>
 	<item>
 		<day>2009-04-04</day>
@@ -729,8 +816,11 @@
 		<arriveTime2>23:55</arriveTime2>
 		<updateInfo1>15分钟前报价</updateInfo1>
 		<updateInfo2>2小时前报价(可能已失效)</updateInfo2>
-		<siteName>我要去哪儿</siteName>
-		<siteId>1111</siteId>
-		<flightCourseId>324324</flightCourseId>
+		<siteName1>我要去哪儿</siteName1>
+		<siteName2>国航</siteName2>
+		<siteId1>331</siteId1>
+		<siteId2>331</siteId2>
+		<flightCourseId1>3222</flightCourseId1>
+		<flightCourseId2>3222</flightCourseId2>
 	</item>
 </data>

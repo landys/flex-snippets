@@ -93,6 +93,9 @@
 						_time = item.departTime1 + "-" + item.arriveTime1;
 						//_priceColor = 0xFF0000;
 						updateInfo = item.updateInfo1;
+						_siteId = item.siteId1;
+						_flightCourseId = item.flightCourseId1;
+						_siteName = item.siteName1;
 					}
 					else
 					{
@@ -104,12 +107,12 @@
 						_time = item.departTime2 + "-" + item.arriveTime2;
 						//_priceColor = 0x3366cc;
 						updateInfo = item.updateInfo2;
+						_siteId = item.siteId2;
+						_flightCourseId = item.flightCourseId2;
+						_siteName = item.siteName2;
 					}
 					
 					_day = item.day;
-					_siteId = item.siteId;
-					_flightCourseId = item.flightCourseId;
-					_siteName = item.siteName;
 					
 					// split updateInfo
 					var index:int = updateInfo.indexOf("(");
