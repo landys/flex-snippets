@@ -46,7 +46,7 @@
 			[Bindable]
 			private var _priceColor:String = "#FF6403";
 			
-			private var _flightCourseId:String;
+			private var _code:String;
 			
 			private var _siteId:String;
 			
@@ -94,7 +94,7 @@
 						//_priceColor = 0xFF0000;
 						updateInfo = item.updateInfo1;
 						_siteId = item.siteId1;
-						_flightCourseId = item.flightCourseId1;
+						_code = item.code1;
 						_siteName = item.siteName1;
 					}
 					else
@@ -108,7 +108,7 @@
 						//_priceColor = 0x3366cc;
 						updateInfo = item.updateInfo2;
 						_siteId = item.siteId2;
-						_flightCourseId = item.flightCourseId2;
+						_code = item.code2;
 						_siteName = item.siteName2;
 					}
 					
@@ -162,7 +162,7 @@
 
 			private function siteNameClick():void
 			{
-				ChartUtil.goSiteName(DataModel.cityBegin, DataModel.cityEnd, _name, _day, _siteId, _flightCourseId);
+				ChartUtil.goSiteName(DataModel.cityBegin, DataModel.cityEnd, _name, _day, _siteId, _code);
 			}
 		]]>
 	</mx:Script>

@@ -19,7 +19,7 @@ package chart
 			}
 		}
 		
-		public static function goSiteName(begCity:String, endCity:String, name:String, day:String, siteId:String, flightCourseId:String) : void
+		public static function goSiteName(begCity:String, endCity:String, name:String, day:String, siteId:String, code:String) : void
 		{
 			var c1:String;
 			var c2:String;
@@ -36,7 +36,8 @@ package chart
 			
 			ExternalInterface.call('TourBao.Utils.loggerNewWindow', 'ud_flight', siteId, c1, c2, day, '', 
 					'http://www.tourbao.com/urlRedirect.do?type=flight&siteId=' + siteId
-					 + '&flightCourseId=' + flightCourseId + '&flyDate=' + day);
+					+ '&departCity=' + c1 + '&destCity=' + c2 + '&flyDate='
+					+ day + '&code=' + code);
 		}
 	}
 }
