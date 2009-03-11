@@ -344,12 +344,12 @@ paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
 	
 	<mx:VBox width="100%" height="100%" backgroundColor="#FFFFFF" visible="{allVisible}">
 		<mx:Canvas width="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
-			<mx:VBox width="100%"  horizontalAlign="center">
+			<mx:VBox width="100%"  horizontalAlign="center" verticalGap="0">
 				<mx:Label text="{title}" styleName="title"/>
 				<mx:CheckBox id="chkbGo" selected="true" 
 					label="{goLabel}" color="#ff0000" change="plotGo.visible=chkbGo.selected"/>
 				<mx:CheckBox id="chkbBack" selected="true" 		
-					label="{backLabel}" color="#3366cc" change="plotBack.visible=chkbBack.selected" />
+					label="{backLabel}" color="#3366cc" change="plotBack.visible=chkbBack.selected"/>
 			</mx:VBox>
 			<!--</mx:HBox>-->
 			<mx:Label text="{vetiTitle}" x="10" y="68" fontSize="12"/>
@@ -448,7 +448,10 @@ paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0">
 		</mx:Canvas>
 	</mx:VBox>
 	
+	<mx:SeriesZoom id="plotGoIn" relativeTo="chart" verticalFocus="center" elementOffset="0" minimumElementDuration="500" duration="500" effectEnd="plotGo.visible=chkbGo.selected"/>
+	<mx:SeriesZoom id="plotBackIn" relativeTo="chart" verticalFocus="center" elementOffset="0" minimumElementDuration="500" duration="500" effectEnd="plotBack.visible=chkbBack.selected"/>
+<!--
 	<mx:SeriesInterpolate id="plotGoIn" elementOffset="15" minimumElementDuration="200" duration="600" effectEnd="plotGo.visible=chkbGo.selected"/>
 	<mx:SeriesInterpolate id="plotBackIn" elementOffset="15" minimumElementDuration="200" duration="600" effectEnd="plotBack.visible=chkbBack.selected"/>
-
+-->
 </mx:Application>
