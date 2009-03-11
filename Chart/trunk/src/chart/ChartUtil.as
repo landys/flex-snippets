@@ -35,7 +35,7 @@ package chart
 			}
 			
 			ExternalInterface.call('TourBao.Utils.loggerNewWindow', 'ud_flight', siteId, c1, c2, day, '', 
-					'http://www.tourbao.com/urlRedirect.do?type=flight&siteId=' + siteId
+					'/urlRedirect.do?type=flight&siteId=' + siteId
 					+ '&departCity=' + c1 + '&destCity=' + c2 + '&flyDate='
 					+ day + '&code=' + code);
 		}
