@@ -18,9 +18,10 @@
     </sourceAttachmentPath>
   </compiler>
   <applications>
+    <application path="TourbaoWizard.mxml"/>
     <application path="OlympicWizard.mxml"/>
-    <application path="OlympicWizardRed.mxml"/>
     <application path="OlympicWizardBlue.mxml"/>
+    <application path="OlympicWizardRed.mxml"/>
   </applications>
   <buildCSSFiles/>
 </actionScriptProperties>
