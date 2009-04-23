@@ -18,10 +18,18 @@
     </sourceAttachmentPath>
   </compiler>
   <applications>
-    <application path="TourbaoWizard.mxml"/>
+    <application path="jipiao6.mxml"/>
     <application path="OlympicWizard.mxml"/>
-    <application path="OlympicWizardBlue.mxml"/>
+    <application path="jipiao5.mxml"/>
+    <application path="jipiao4.mxml"/>
     <application path="OlympicWizardRed.mxml"/>
+    <application path="jipiao7.mxml"/>
+    <application path="TourbaoWizard.mxml"/>
+    <application path="jipiao8.mxml"/>
+    <application path="OlympicWizardBlue.mxml"/>
+    <application path="jipiao3.mxml"/>
+    <application path="jipiao2.mxml"/>
+    <application path="jipiao1.mxml"/>
   </applications>
   <buildCSSFiles/>
 </actionScriptProperties>
